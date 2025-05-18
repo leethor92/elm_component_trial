@@ -1,7 +1,7 @@
 module Main exposing (main)
 
 import Browser
-import Gallery exposing (Model, Msg, init, update, view)
+import Gallery exposing (Model, init, view)
 import Html exposing (Html, div, text)
 import Http
 import Json.Decode as Decode exposing (Decoder)
@@ -37,7 +37,6 @@ productsDecoder =
 
 type Msg
     = ProductsReceived (Result Http.Error (List Product))
-    | GalleryMsg Gallery.Msg
 
 
 -- MODEL --
@@ -73,7 +72,7 @@ update msg model =
             case result of
                 Ok products ->
                     let
-                        galleryImages =
+                        galleryProducts =
                             List.map
                                 (\p ->
                                     { id = p.id
@@ -86,17 +85,10 @@ update msg model =
                                 )
                                 products
                     in
-                    ( { model | galleryModel = Gallery.init galleryImages, error = Nothing }, Cmd.none )
+                    ( { model | galleryModel = Gallery.init galleryProducts, error = Nothing }, Cmd.none )
 
                 Err httpError ->
                     ( { model | error = Just (Debug.toString httpError) }, Cmd.none )
-
-        GalleryMsg galleryMsg ->
-            let
-                updatedGallery = Gallery.update galleryMsg model.galleryModel
-            in
-            ( { model | galleryModel = updatedGallery }, Cmd.none )
-
 
 
 -- VIEW --
@@ -108,11 +100,18 @@ view model =
             div [] [ text ("Error loading products: " ++ err) ]
 
         Nothing ->
-            Html.map GalleryMsg (Gallery.view model.galleryModel)
+            -- No need to Html.map since Gallery.view returns Html msg (generic)
+            viewGallery model.galleryModel
+
+
+viewGallery : Gallery.Model -> Html Msg
+viewGallery galleryModel =
+    Html.map (\_ -> Debug.todo "No messages") (Gallery.view galleryModel)
 
 
 -- MAIN --
 
+main : Program () Model Msg
 main =
     Browser.element
         { init = init

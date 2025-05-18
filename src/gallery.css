@@ -1,0 +1,84 @@
+:root {
+    --color-white: #ffffff;
+    --color-grey-100: #f7f7f7;
+    --color-grey-200: #efefef;
+    --color-grey-300: #dbdbdb;
+    --color-grey-400: #9b9b9b;
+    --color-grey-500: #666666;
+    --color-grey-600: #333333;
+    --color-pop-orange: #e15a1d;
+  
+    --color-text-primary: var(--color-grey-600);
+    --color-text-secondary: var(--color-grey-500);
+    --color-text-tertiary: var(--color-grey-400);
+    --color-text-inverted: var(--color-white);
+    --color-text-brand: var(--color-pop-orange);
+  
+    --color-surface-primary: var(--color-grey-100);
+    --color-surface-secondary: var(--color-grey-300);
+    --color-surface-tertiary: var(--color-grey-400);
+    --color-surface-brand: var(--color-pop-orange);
+  }
+  
+  /* Base styles for gallery container */
+  .gallery-container {
+    background-color: var(--color-surface-primary);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 1rem;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  /* Each product card */
+  .product-card {
+    background-color: var(--color-surface-primary);
+    border: 1px solid var(--color-surface-secondary);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    gap: 0.5rem;
+    color: var(--color-text-primary);
+    box-sizing: border-box;
+  }
+  
+  /* Image style */
+  .product-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 0.25rem;
+  }
+  
+  /* Title */
+  .product-title {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Price with brand color */
+  .product-price {
+    color: var(--color-text-brand);
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  /* Description with tertiary color and clamp */
+  .product-description {
+    color: var(--color-text-tertiary);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
