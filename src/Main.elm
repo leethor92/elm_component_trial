@@ -72,19 +72,21 @@ update msg model =
         ProductsReceived result ->
             case result of
                 Ok products ->
-                    -- Map Product list to Gallery.Image list
                     let
-                        images =
+                        galleryImages =
                             List.map
-                                (\p -> 
+                                (\p ->
                                     { id = p.id
                                     , url = p.image
                                     , alt = p.title
+                                    , title = p.title
+                                    , price = p.price
+                                    , description = p.description
                                     }
                                 )
                                 products
                     in
-                    ( { model | galleryModel = Gallery.init images, error = Nothing }, Cmd.none )
+                    ( { model | galleryModel = Gallery.init galleryImages, error = Nothing }, Cmd.none )
 
                 Err httpError ->
                     ( { model | error = Just (Debug.toString httpError) }, Cmd.none )
@@ -94,6 +96,7 @@ update msg model =
                 updatedGallery = Gallery.update galleryMsg model.galleryModel
             in
             ( { model | galleryModel = updatedGallery }, Cmd.none )
+
 
 
 -- VIEW --
