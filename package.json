@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "astro": "^5.7.13"
+  },
+  "devDependencies": {
+    "vite-plugin-elm": "^3.0.1"
   }
 }
