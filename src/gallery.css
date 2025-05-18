@@ -28,12 +28,11 @@
 
   /* Base styles for gallery container */
   .gallery-container {
-    max-width: 100vw;
     background-color: var(--color-white);
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 0.25rem;
-    width: 100vw;
+    width: 100%;
     padding: 1rem;
     min-height: 100vh;
     box-sizing: border-box;
