@@ -49,8 +49,10 @@ viewProductCard : Product -> Html Msg
 viewProductCard product =
     li [ class "product-card" ]
         [ img [ src product.url, alt product.alt ] []
-        , div [ class "product-title" ] [ text product.title ]
-        , div [ class "product-price" ] [ text ("$" ++ String.fromFloat product.price) ]
+        , div [ class "product-title-price" ]
+            [ div [ class "product-title" ] [ text product.title ]
+            , div [ class "product-price" ] [ text ("$" ++ String.fromFloat product.price) ]
+            ]
         , div [ class "product-description" ] [ text product.description ]
         ]
 
