@@ -1,6 +1,6 @@
 module Gallery exposing (Model, Msg(..), init, update, view)
 
-import Html exposing (Html, div, img, li, text)
+import Html exposing (Html, div, img, text)
 import Html.Attributes exposing (src, class, alt)
 
 
@@ -47,7 +47,7 @@ view model =
 
 viewProductCard : Product -> Html Msg
 viewProductCard product =
-    li [ class "product-card" ]
+    div [ class "product-card" ]
         [ img [ src product.url, alt product.alt ] []
         , div [ class "product-title-price" ]
             [ div [ class "product-title" ] [ text product.title ]
